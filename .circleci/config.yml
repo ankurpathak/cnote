@@ -48,4 +48,4 @@ jobs:
 
       - store_artifacts:
           path: ~/cnote/target/cnote.war
-          destination: app
+          #destination: app
