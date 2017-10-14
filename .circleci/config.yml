@@ -14,7 +14,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
-    working_directory: ~/repo
+    working_directory: ~/cnote
 
     environment:
       # Customize the JVM maximum heap limit
@@ -41,9 +41,11 @@ jobs:
       - run:
           name: Creating Cnote War
           command: |
+            pwd;
+            ls -la;
             echo "Creating Cnote War";
             mvn clean install
 
       - store_artifacts:
-          path: /target/cnote.war
-          destination: cnote
+          path: ~/cnote/target/cnote.war
+          destination: app
