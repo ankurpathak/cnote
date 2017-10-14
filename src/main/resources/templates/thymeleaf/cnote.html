@@ -1,0 +1,120 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+   <title>cnote enquiry detail</title>
+ <style>
+
+</style>
+</head>
+<body>
+    <table  style="border:1px solid #ccc; width: 655px;margin: 0 auto;">
+
+                           <!-- Image logo code here -->
+
+            <tr>
+                   <td style="text-align: right;"><a href="http://www.pharmerz.com"><img  th:src="${logoUrl}" src="http://bharatparenterals.s3.amazonaws.com/organizations/logo.jpg" alt="cnote logo" style="padding: 10px 10px 10px 0;"/></a></td>
+            </tr>
+
+
+                      <!-- Order Details heading code here -->
+
+            <tr>
+                   <td>
+                     <h4 style="text-align:center;"><u>CNotE Order Details</u></h4>
+                   </td>
+            </tr>
+
+
+                          <!-- date display code here -->
+
+             <tr>
+                   <td  style="font-size: 12px; padding-right: 10px;text-align: right;"><b th:text="${#dates.format(now, 'dd-MMMM-yyyy HH:mm')}">15-Dec-2016 04:22 pm</b></td>
+             </tr>
+
+
+                         <!-- Customer details code here -->
+
+
+                    <tr>
+                      <td>
+                          <p style="margin-left: 10px;"><b>Dear</b> <b th:text="${#strings.capitalize(enquiry.customer.name) + ','}">Customer Name</b></p>
+                          <p style="margin-left: 10px;">Thank you for sharing your valuable time. Below are the details about products, we have discussed.</p>
+                      </td>
+                    </tr>
+
+
+                    <!-- Second table for product detail start here -->
+
+
+
+                <tr>
+                    <td>
+                        <table style="border: 1px solid #ccc;border-collapse: collapse;width: 600px;margin: 0 auto;">
+                           <tr style="border: 1px solid black;">
+                               <th style="text-align: center; border: 1px solid #ccc;line-height: 30px;background-color: #ccc;width:10%" >Sr</th>
+                               <th style="text-align: center; border: 1px solid #ccc;line-height: 30px;background-color: #ccc;width: 40%">Product Name</th> 
+                               <th style="text-align: center; border: 1px solid #ccc;line-height: 30px;background-color: #ccc;width: 40%">Remark</th>
+                           </tr>
+                           <tr th:each="lineItem,iterStat  : ${enquiry.lineItems}">
+                               <td style="text-align: center; border: 1px solid #ccc;" th:text="${iterStat.index + 1}">1</td>
+                               <td style="text-align: center; border: 1px solid #ccc;" th:text="${lineItem.product.name}">Abcd</td>
+                               <td style="text-align: center; border: 1px solid #ccc;" th:text="${lineItem.remark}">yes</td>
+                           </tr>
+                           <tr th:if="false">
+                               <td style="text-align: center; border: 1px solid #ccc;">2</td>
+                               <td style="text-align: center; border: 1px solid #ccc;">pqrs</td>
+                               <td style="text-align: center; border: 1px solid #ccc;">no</td>
+                          </tr>
+                          <tr th:if="false">
+                               <td style="text-align: center; border: 1px solid #ccc;">3</td>
+                               <td style="text-align: center; border: 1px solid #ccc;">pqrs</td>
+                               <td style="text-align: center; border: 1px solid #ccc;">no</td>
+                          </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+
+               <!-- Code for note here -->
+
+<tr>
+    <td>
+        <p style="margin-left: 10px;"><b>Note : </b><span th:text="${enquiry.remark}">Check For Email</span></p>
+        <p style="margin-left: 10px;">This is system generated email , please do not reply to this email. for more info please contact us <span th:text="${enquiry.createdBy.email}">abcd@gmail.com</span></p>
+    </td>
+</tr>
+
+
+              <!-- Code for regards -->
+
+
+<tr>
+    <td>
+        <p style="margin-left: 10px;"><b>Regards,</b><br/><br/>
+            <span th:text="${#strings.capitalize(enquiry.createdBy.firstName + ' ')}">Firstname</span><span th:text="${#strings.isEmpty(enquiry.createdBy.middleName) and enquiry.createdBy.middleName != null} ? ${#strings.capitalize(enquiry.createdBy.middleName +' ')} : ''">Middelename</span><span th:text="${#strings.capitalize(enquiry.createdBy.lastName)}">Lastname</span><br/>
+            Email : <span th:text="${enquiry.createdBy.email}">abcd@gmail.com</span><br/>
+            Contact : <span th:text="${enquiry.createdBy.contact}">9175798765</span><br/>
+            <span th:text="${enquiry.organization.name}">Sender Company Name</span><br/>
+        </p>
+    </td>
+</tr>
+
+
+
+
+            <!-- Code for Powered by and pharmerz logo here -->
+
+<tr>
+    <td style="text-align: right;">
+        <p style="margin-right: 10px;">Powered by,<br/>
+        <img src="http://res.cloudinary.com/pharmerzsupport/image/upload/v1500456734/pharmerz-logo-with-70-px-hight_molqfz.jpg" alt="pharmerz logo"/></p>
+    </td>
+</tr>
+
+
+
+</table>
+</body>
+</html>
