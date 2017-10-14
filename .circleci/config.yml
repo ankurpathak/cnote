@@ -38,4 +38,12 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn clean install
+      - run:
+          name: Creating Cnote War
+          command: |
+            echo "Creating Cnote War";
+            mvn clean install
+
+      - store_artifacts:
+          path: /target/cnote.war
+          destination: cnote
