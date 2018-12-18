@@ -14,6 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.DefaultSecurityFilterChain;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.Filter;
 
@@ -34,7 +36,7 @@ public class CNoteApplication {
 
 }
 
-//@Component
+@Component
 class CNoteApplicationCommandLineRunner implements CommandLineRunner{
 
 	@Autowired
@@ -63,6 +65,10 @@ class CNoteApplicationCommandLineRunner implements CommandLineRunner{
 
 	@Autowired
 	private Filter[] defaultSecurityFilterChains;
+
+
+	@Autowired(required = false)
+	private DefaultSecurityFilterChain[] chains;
 
 
 
